@@ -1,0 +1,216 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --yellow: #FFFC31;
+    --vintage-grape: #5C415D;
+    --ivory: #F6F7EB;
+    --fiery-terracotta: #E94F37;
+    --gunmetal: #393E41;
+}
+
+body {
+    background-color: var(--ivory);
+    color: var(--gunmetal);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header */
+.app-header {
+    background-color: var(--vintage-grape);
+    color: var(--ivory);
+    text-align: center;
+    padding: 1.5rem 1rem;
+    border-bottom: 10px solid var(--yellow);
+}
+
+/* Main Layout */
+.container {
+    display: flex;
+    flex: 1;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Panel Layout */
+.left-panel,
+.right-panel {
+    flex: 1;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 15px rgba(57, 62, 65, 0.08);
+}
+
+.left-panel h2,
+.right-panel h2 {
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+/* Todo List */
+.todo-list {
+    list-style: none;
+}
+
+.todo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.todo-item:hover {
+    border-left: 5px solid var(--yellow);
+    background-color: rgba(255, 252, 49, 0.15); 
+}
+
+/* Badge Styles */
+.badge {
+    font-size: 0.8rem;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+.badge.pending {
+    background-color: rgba(233, 79, 55, 0.15);
+    color: var(--fiery-terracotta);
+}
+
+.badge.completed {
+    background-color: rgba(92, 65, 93, 0.15);
+    color: var(--vintage-grape);
+}
+
+/* Editor Form */
+.editor-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-group-vertical label {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--gunmetal);
+}
+
+.form-group-vertical input,
+.form-group-vertical textarea,
+.form-group-vertical select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    color: var(--gunmetal);
+}
+
+.form-group-vertical input:focus,
+.form-group-vertical textarea:focus,
+.form-group-vertical select:focus {
+    outline: none;
+    border-color: var(--vintage-grape);
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.btn-add {
+    flex: 1;
+    padding: 10px;
+    background-color: var(--fiery-terracotta);
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: opacity 0.2s;
+}
+
+.btn-add:hover {
+    opacity: 0.9;
+}
+
+.btn-save {
+    padding: 10px 15px;
+    background-color: var(--vintage-grape);
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: opacity 0.2s;
+}
+
+.btn-save:hover {
+    opacity: 0.9;
+}
+
+.btn-delete {
+    padding: 10px 15px;
+    background-color: transparent;
+    color: var(--fiery-terracotta);
+    border: 1px solid var(--fiery-terracotta);
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.btn-delete:hover {
+    background-color: var(--fiery-terracotta);
+    color: #ffffff;
+}
+
+/* Footer */
+.app-footer {
+    background-color: var(--vintage-grape);
+    color: var(--ivory);
+    text-align: center;
+    padding: 1rem;
+    margin-top: auto;
+    border-top: 10px solid var(--yellow);
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        padding: 10px;
+    }
+    
+    .left-panel, 
+    .right-panel {
+        width: 100%;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+}

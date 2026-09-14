@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <!-- Header -->
+    <header class="app-header">
+        <h1>To do List</h1>
+    </header>
+
+    <!-- Container -->
+    <main class="container">
+        <!-- Panel Kiri: List Todo -->
+        <section class="left-panel">
+            <h2>Daftar Todo</h2>
+
+            <!-- Dummy Data Todo List -->
+            <ul class="todo-list">
+                <li class="todo-item">
+                    <span class="todo-title">Ngerjain tugas pweb</span>
+                    <span class="badge pending">Belum Selesai</span>
+                </li>
+                <li class="todo-item">
+                    <span class="todo-title">Belajar kalkulus</span>
+                    <span class="badge completed">Selesai</span>
+                </li>
+                <li class="todo-item">
+                    <span class="todo-title">Ngerjain tugas pbo</span>
+                    <span class="badge pending">Belum Selesai</span>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Panel Kanan: Editor Todo -->
+        <aside class="right-panel">
+            <h2>Editor Todo</h2>
+            <form class="editor-form" action="#" method="POST">
+                <div class="form-group-vertical">
+                    <label for="edit-title">Judul Todo</label>
+                    <input type="text" id="edit-title" placeholder="Masukkan judul tugas..." required>
+                </div>
+                
+                <div class="form-group-vertical">
+                    <label for="edit-desc">Deskripsi</label>
+                    <textarea id="edit-desc" rows="4" placeholder="Masukkan deskripsi tugas..."></textarea>
+                </div>
+
+                <div class="form-group-vertical">
+                    <label for="edit-status">Status</label>
+                    <select id="edit-status">
+                        <option value="pending" selected>Belum Selesai</option>
+                        <option value="completed">Selesai</option>
+                    </select>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="btn-add">+ Tambah Todo</button>
+                    <button type="button" class="btn-save">Simpan Perubahan</button>
+                    <button type="button" class="btn-delete">Hapus</button>
+                </div>
+            </form>
+        </aside>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <p>Galih Arsandy Tawakal</p>
+    </footer>
+
+</body>
+</html>

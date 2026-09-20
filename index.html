@@ -11,6 +11,7 @@
     <!-- Header -->
     <header class="app-header">
         <h1>To do List</h1>
+        <button id="toggle-theme-btn" class="btn-theme">Dark Mode</button>
     </header>
 
     <!-- Container -->
@@ -19,27 +20,18 @@
         <section class="left-panel">
             <h2>Daftar Todo</h2>
 
-            <!-- Dummy Data Todo List -->
-            <ul class="todo-list">
-                <li class="todo-item">
-                    <span class="todo-title">Ngerjain tugas pweb</span>
-                    <span class="badge pending">Belum Selesai</span>
-                </li>
-                <li class="todo-item">
-                    <span class="todo-title">Belajar kalkulus</span>
-                    <span class="badge completed">Selesai</span>
-                </li>
-                <li class="todo-item">
-                    <span class="todo-title">Ngerjain tugas pbo</span>
-                    <span class="badge pending">Belum Selesai</span>
-                </li>
+            <!-- Container untuk daftar Todo dari JavaScript -->
+            <ul id="todo-list" class="todo-list">
+                <!-- Elemen diproduksi secara dinamis via JavaScript -->
             </ul>
         </section>
 
         <!-- Panel Kanan: Editor Todo -->
         <aside class="right-panel">
-            <h2>Editor Todo</h2>
-            <form class="editor-form" action="#" method="POST">
+            <h2 id="form-title">Editor Todo</h2>
+            <form id="editor-form" class="editor-form">
+                <input type="hidden" id="edit-id" value="">
+
                 <div class="form-group-vertical">
                     <label for="edit-title">Judul Todo</label>
                     <input type="text" id="edit-title" placeholder="Masukkan judul tugas..." required>
@@ -59,9 +51,9 @@
                 </div>
 
                 <div class="button-group">
-                    <button type="submit" class="btn-add">+ Tambah Todo</button>
-                    <button type="button" class="btn-save">Simpan Perubahan</button>
-                    <button type="button" class="btn-delete">Hapus</button>
+                    <button type="submit" id="btn-add" class="btn-add">+ Tambah Todo</button>
+                    <button type="button" id="btn-save" class="btn-save" style="display: none;">Simpan Perubahan</button>
+                    <button type="button" id="btn-delete" class="btn-delete" style="display: none;">Hapus</button>
                 </div>
             </form>
         </aside>
@@ -72,5 +64,7 @@
         <p>Galih Arsandy Tawakal</p>
     </footer>
 
+    <!-- Hubungkan berkas JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>

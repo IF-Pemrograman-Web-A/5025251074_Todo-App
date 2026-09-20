@@ -11,6 +11,16 @@
     --ivory: #F6F7EB;
     --fiery-terracotta: #E94F37;
     --gunmetal: #393E41;
+    --card-bg: #ffffff;
+    --border-color: #e0e0e0;
+}
+
+/* Dark Mode */
+body.dark-mode {
+    --ivory: #1e1e24;
+    --gunmetal: #f6f7eb;
+    --card-bg: #2b2d42;
+    --border-color: #4a4e69;
 }
 
 body {
@@ -19,15 +29,36 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 /* Header */
 .app-header {
     background-color: var(--vintage-grape);
-    color: var(--ivory);
+    color: #F6F7EB;
     text-align: center;
     padding: 1.5rem 1rem;
     border-bottom: 10px solid var(--yellow);
+    position: relative;
+}
+
+.btn-theme {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 8px 14px;
+    background-color: var(--yellow);
+    color: #393E41;
+    border: none;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-theme:hover {
+    opacity: 0.9;
 }
 
 /* Main Layout */
@@ -45,17 +76,18 @@ body {
 .left-panel,
 .right-panel {
     flex: 1;
-    background: #ffffff;
+    background: var(--card-bg);
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 10px 15px rgba(57, 62, 65, 0.08);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
 }
 
 .left-panel h2,
 .right-panel h2 {
     margin-bottom: 20px;
     padding-bottom: 12px;
-    border-bottom: 2px solid #e0e0e0;
+    border-bottom: 2px solid var(--border-color);
 }
 
 /* Todo List */
@@ -65,10 +97,10 @@ body {
 
 .todo-item {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 12px;
     padding: 12px;
-    border: 1px solid #e0e0e0;
+    border: 1px solid var(--border-color);
     border-radius: 4px;
     margin-bottom: 10px;
     cursor: pointer;
@@ -78,6 +110,25 @@ body {
 .todo-item:hover {
     border-left: 5px solid var(--yellow);
     background-color: rgba(255, 252, 49, 0.15); 
+}
+
+.todo-checkbox {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.todo-details {
+    flex: 1;
+}
+
+.todo-title {
+    font-weight: 600;
+}
+
+.todo-item.completed-item .todo-title {
+    text-decoration: line-through;
+    opacity: 0.6;
 }
 
 /* Badge Styles */
@@ -96,6 +147,10 @@ body {
 .badge.completed {
     background-color: rgba(92, 65, 93, 0.15);
     color: var(--vintage-grape);
+}
+
+body.dark-mode .badge.completed {
+    color: #a882ab;
 }
 
 /* Editor Form */
@@ -121,10 +176,11 @@ body {
 .form-group-vertical textarea,
 .form-group-vertical select {
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
     border-radius: 4px;
     font-size: 0.95rem;
     color: var(--gunmetal);
+    background-color: var(--card-bg);
 }
 
 .form-group-vertical input:focus,
@@ -191,7 +247,7 @@ body {
 /* Footer */
 .app-footer {
     background-color: var(--vintage-grape);
-    color: var(--ivory);
+    color: #F6F7EB;
     text-align: center;
     padding: 1rem;
     margin-top: auto;
@@ -212,5 +268,11 @@ body {
 
     .button-group {
         flex-direction: column;
+    }
+
+    .btn-theme {
+        position: static;
+        transform: none;
+        margin-top: 10px;
     }
 }

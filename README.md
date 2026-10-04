@@ -20,7 +20,7 @@ Tombol digunakan untuk mengubah menjadi tema gelap ketika ditekan, tekan lagi un
 <img width="1842" height="857" alt="Screenshot 2026-10-04 153513" src="https://github.com/user-attachments/assets/053d5a38-53ca-44e7-bcd9-7d292320d363" />
 
 ### Panel Kiri - Daftar Todo
-Menampilkan list dari todo yang sudah dibuat. Tersedia checkbox untuk menandai apakah todo sudah selesai atau belum.
+Menampilkan list dari todo yang sudah dibuat. Tersedia checkbox untuk menandai apakah todo sudah selesai atau belum.  
 <img width="733" height="637" alt="Screenshot 2026-09-20 190430" src="https://github.com/user-attachments/assets/3308f996-c35b-44a4-baee-85d5615c87ff" />  
 <img width="662" height="152" alt="Screenshot 2026-09-20 190854" src="https://github.com/user-attachments/assets/13e78d4a-a98c-4ca6-b2ec-e0a71f337ef5" />
 

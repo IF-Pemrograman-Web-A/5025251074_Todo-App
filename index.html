@@ -3,43 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To do List</title>
+    <title>To do List - The Lost Cavern</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     
+    <!-- Accessibility: Skip to Content -->
+    <a href="#main-content" class="skip-to-content">Langsung ke konten utama</a>
+
     <!-- Header -->
-    <header class="app-header">
+    <header class="app-header" role="banner">
         <h1>To do List</h1>
-        <button id="toggle-theme-btn" class="btn-theme">Dark Mode</button>
+        <button id="toggle-theme-btn" class="btn-theme" aria-label="Beralih ke Mode Gelap">Dark Mode</button>
     </header>
 
-    <!-- Container -->
-    <main class="container">
+    <!-- Container Utama -->
+    <main id="main-content" class="container" tabindex="-1">
         <!-- Panel Kiri: List Todo -->
-        <section class="left-panel">
-            <h2>Daftar Todo</h2>
+        <section class="left-panel" aria-labelledby="heading-todo-list">
+            <h2 id="heading-todo-list">Daftar Todo</h2>
 
             <!-- Container untuk daftar Todo dari JavaScript -->
-            <ul id="todo-list" class="todo-list">
+            <ul id="todo-list" class="todo-list" aria-live="polite">
                 <!-- Elemen diproduksi secara dinamis via JavaScript -->
             </ul>
         </section>
 
         <!-- Panel Kanan: Editor Todo -->
-        <aside class="right-panel">
+        <aside class="right-panel" aria-labelledby="form-title">
             <h2 id="form-title">Editor Todo</h2>
             <form id="editor-form" class="editor-form">
                 <input type="hidden" id="edit-id" value="">
 
                 <div class="form-group-vertical">
-                    <label for="edit-title">Judul Todo</label>
-                    <input type="text" id="edit-title" placeholder="Masukkan judul tugas..." required>
+                    <label for="edit-title">Judul Todo <span class="required">*</span></label>
+                    <input type="text" id="edit-title" placeholder="Masukkan judul tugas..." required aria-required="true">
                 </div>
                 
                 <div class="form-group-vertical">
                     <label for="edit-desc">Deskripsi</label>
-                    <textarea id="edit-desc" rows="4" placeholder="Masukkan deskripsi tugas..."></textarea>
+                    <textarea id="edit-desc" rows="3" placeholder="Masukkan deskripsi tugas..."></textarea>
                 </div>
 
                 <div class="form-group-vertical">
@@ -50,17 +53,46 @@
                     </select>
                 </div>
 
+                <!-- Media Capture API Section -->
+                <div class="form-group-vertical media-section">
+                    <label>Lampiran Gambar / Ambil Foto</label>
+                    <div class="camera-controls">
+                        <button type="button" id="btn-start-camera" class="btn-secondary">Buka Kamera</button>
+                        <button type="button" id="btn-capture" class="btn-secondary" style="display: none;">Ambil Foto</button>
+                    </div>
+                    
+                    <video id="camera-video" autoplay playsinline style="display: none;" title="Pratinjau Kamera"></video>
+                    <canvas id="camera-canvas" style="display: none;"></canvas>
+
+                    <div class="file-fallback">
+                        <label for="edit-image-file" class="file-label">Atau unggah file gambar:</label>
+                        <input type="file" id="edit-image-file" accept="image/*">
+                    </div>
+
+                    <div id="image-preview-container" class="image-preview-container" style="display: none;">
+                        <img id="image-preview" src="" alt="Pratinjau lampiran todo">
+                        <button type="button" id="btn-remove-image" class="btn-danger-sm">Hapus Gambar</button>
+                    </div>
+                </div>
+
+                <!-- Notification Time Section -->
+                <div class="form-group-vertical">
+                    <label for="edit-notify-time">Waktu Pengingat Notifikasi</label>
+                    <input type="datetime-local" id="edit-notify-time">
+                </div>
+
                 <div class="button-group">
                     <button type="submit" id="btn-add" class="btn-add">+ Tambah Todo</button>
                     <button type="button" id="btn-save" class="btn-save" style="display: none;">Simpan Perubahan</button>
                     <button type="button" id="btn-delete" class="btn-delete" style="display: none;">Hapus</button>
+                    <button type="button" id="btn-cancel" class="btn-cancel" style="display: none;">Batal</button>
                 </div>
             </form>
         </aside>
     </main>
 
     <!-- Footer -->
-    <footer class="app-footer">
+    <footer class="app-footer" role="contentinfo">
         <p>Galih Arsandy Tawakal</p>
     </footer>
 

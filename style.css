@@ -13,6 +13,31 @@
     --gunmetal: #393E41;
     --card-bg: #ffffff;
     --border-color: #e0e0e0;
+    --focus-ring: #026199;
+}
+
+/* Aksesibilitas: Skip to Content */
+.skip-to-content {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--vintage-grape);
+    color: #ffffff;
+    padding: 8px 16px;
+    z-index: 100;
+    text-decoration: none;
+    font-weight: bold;
+    transition: top 0.2s ease;
+}
+
+.skip-to-content:focus {
+    top: 0;
+}
+
+/* Focus Indicator untuk Accessibility */
+a:focus, button:focus, input:focus, textarea:focus, select:focus {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 2px;
 }
 
 /* Dark Mode */
@@ -21,6 +46,7 @@ body.dark-mode {
     --gunmetal: #f6f7eb;
     --card-bg: #2b2d42;
     --border-color: #4a4e69;
+    --focus-ring: #FFFC31;
 }
 
 body {
@@ -101,20 +127,20 @@ body {
     gap: 12px;
     padding: 12px;
     border: 1px solid var(--border-color);
-    border-radius: 4px;
+    border-radius: 6px;
     margin-bottom: 10px;
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
-.todo-item:hover {
+.todo-item:hover, .todo-item:focus-within {
     border-left: 5px solid var(--yellow);
     background-color: rgba(255, 252, 49, 0.15); 
 }
 
 .todo-checkbox {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     cursor: pointer;
 }
 
@@ -124,6 +150,22 @@ body {
 
 .todo-title {
     font-weight: 600;
+    display: block;
+}
+
+.todo-notify-info {
+    font-size: 0.8rem;
+    opacity: 0.8;
+    display: block;
+    margin-top: 2px;
+}
+
+.todo-thumbnail {
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
 }
 
 .todo-item.completed-item .todo-title {
@@ -160,6 +202,10 @@ body.dark-mode .badge.completed {
     gap: 15px;
 }
 
+.required {
+    color: var(--fiery-terracotta);
+}
+
 .form-group-vertical {
     display: flex;
     flex-direction: column;
@@ -183,13 +229,54 @@ body.dark-mode .badge.completed {
     background-color: var(--card-bg);
 }
 
-.form-group-vertical input:focus,
-.form-group-vertical textarea:focus,
-.form-group-vertical select:focus {
-    outline: none;
-    border-color: var(--vintage-grape);
+/* Media Capture Styling */
+.media-section {
+    border: 1px dashed var(--border-color);
+    padding: 12px;
+    border-radius: 6px;
 }
 
+.camera-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+#camera-video, #camera-canvas {
+    width: 100%;
+    max-height: 200px;
+    background: #000;
+    border-radius: 4px;
+    object-fit: cover;
+    margin-bottom: 8px;
+}
+
+.file-fallback {
+    margin-top: 5px;
+}
+
+.file-label {
+    font-size: 0.8rem !important;
+    font-weight: normal !important;
+    margin-bottom: 4px;
+}
+
+.image-preview-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+#image-preview {
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 4px;
+    object-fit: cover;
+    border: 1px solid var(--border-color);
+}
+
+/* Buttons */
 .button-group {
     display: flex;
     gap: 10px;
@@ -197,10 +284,9 @@ body.dark-mode .badge.completed {
     flex-wrap: wrap;
 }
 
-.btn-add {
+.btn-add, .btn-save {
     flex: 1;
     padding: 10px;
-    background-color: var(--fiery-terracotta);
     color: #ffffff;
     border: none;
     border-radius: 4px;
@@ -209,23 +295,22 @@ body.dark-mode .badge.completed {
     transition: opacity 0.2s;
 }
 
-.btn-add:hover {
-    opacity: 0.9;
+.btn-add {
+    background-color: var(--fiery-terracotta);
 }
 
 .btn-save {
-    padding: 10px 15px;
     background-color: var(--vintage-grape);
-    color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: opacity 0.2s;
 }
 
-.btn-save:hover {
-    opacity: 0.9;
+.btn-secondary {
+    padding: 6px 12px;
+    background-color: var(--gunmetal);
+    color: var(--ivory);
+    border: none;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    cursor: pointer;
 }
 
 .btn-delete {
@@ -237,6 +322,26 @@ body.dark-mode .badge.completed {
     cursor: pointer;
     font-weight: 600;
     transition: all 0.2s;
+}
+
+.btn-cancel {
+    padding: 10px 15px;
+    background-color: transparent;
+    color: var(--gunmetal);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-danger-sm {
+    padding: 4px 8px;
+    background-color: var(--fiery-terracotta);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    cursor: pointer;
 }
 
 .btn-delete:hover {

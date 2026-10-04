@@ -5,7 +5,7 @@
 | Galih Arsandy Tawakal | 5025251074 |
 
 ## Preview
-<img width="1872" height="848" alt="Screenshot 2026-09-20 185217" src="https://github.com/user-attachments/assets/b2939d3d-d011-450b-881b-08dca4533f5e" />
+<img width="1863" height="856" alt="Screenshot 2026-10-04 153234" src="https://github.com/user-attachments/assets/1118bda9-b5ec-46c2-8fb3-9e220bb1ffae" />
 
 ### Toggle Light / Dark Mode
 <img width="156" height="62" alt="image" src="https://github.com/user-attachments/assets/92ae025d-fef7-41ed-b00a-573ab497df7d" />
@@ -14,10 +14,10 @@
 Tombol digunakan untuk mengubah menjadi tema gelap ketika ditekan, tekan lagi untuk mengubah menjadi tema terang.
 
 ### Dark Mode
-<img width="1873" height="851" alt="Screenshot 2026-09-20 185954" src="https://github.com/user-attachments/assets/15209573-6a9e-459c-9010-78d859ffe43f" />
+<img width="1832" height="865" alt="Screenshot 2026-10-04 153425" src="https://github.com/user-attachments/assets/7abd6c19-4d17-4565-aaab-fd812a452da2" />
 
 ### Light Mode
-<img width="1872" height="848" alt="Screenshot 2026-09-20 185217" src="https://github.com/user-attachments/assets/8b693ffa-cd4c-4716-92ff-3b656d004b82" />
+<img width="1842" height="857" alt="Screenshot 2026-10-04 153513" src="https://github.com/user-attachments/assets/053d5a38-53ca-44e7-bcd9-7d292320d363" />
 
 ### Panel Kiri - Daftar Todo
 Menampilkan list dari todo yang sudah dibuat. Tersedia checkbox untuk menandai apakah todo sudah selesai atau belum.
@@ -26,6 +26,6 @@ Menampilkan list dari todo yang sudah dibuat. Tersedia checkbox untuk menandai a
 
 ### Panel Kanan - Editor Todo
 Dapat digunakan untuk menambahkan todo ataupun untuk mengedit todo yang sudah dibuat.
-<img width="732" height="642" alt="Screenshot 2026-09-20 191130" src="https://github.com/user-attachments/assets/b0a2501a-292e-42f0-ba22-050838b030cc" />
-<img width="738" height="643" alt="Screenshot 2026-09-20 191358" src="https://github.com/user-attachments/assets/c29634dd-d29f-4d36-b34c-0c62a51103ac" />
+<img width="737" height="857" alt="Screenshot 2026-10-04 153635" src="https://github.com/user-attachments/assets/1b0ebe39-5f66-4bca-973a-cc9f62e61f94" />
+<img width="728" height="856" alt="Screenshot 2026-10-04 153717" src="https://github.com/user-attachments/assets/5e33ca41-cbc7-4ffa-bead-f35bb5f51b25" />
 

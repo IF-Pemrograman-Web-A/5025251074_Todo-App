@@ -1,63 +1,42 @@
-const CACHE_NAME = 'todo-app';
-const ASSETS_TO_CACHE = [
-  './',
-  './index.html',
-  './style.css',
-  './script.js'
-];
+// Halaman sekarang dinamis (PHP), jadi: aset statis cache-first, halaman network-first.
+const CACHE_NAME = 'todo-app-v2';
+const STATIC_ASSETS = ['./style.css', './script.js'];
 
-// Lifecycle: Install
 self.addEventListener('install', (event) => {
-  console.log('[Service Worker] Installing...');
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      console.log('[Service Worker] Caching app shell');
-      return cache.addAll(ASSETS_TO_CACHE);
-    })
-  );
+  event.waitUntil(caches.open(CACHE_NAME).then((c) => c.addAll(STATIC_ASSETS)));
   self.skipWaiting();
 });
 
-// Lifecycle: Activate
 self.addEventListener('activate', (event) => {
-  console.log('[Service Worker] Activating...');
   event.waitUntil(
-    caches.keys().then((keyList) => {
-      return Promise.all(
-        keyList.map((key) => {
-          if (key !== CACHE_NAME) {
-            console.log('[Service Worker] Removing old cache', key);
-            return caches.delete(key);
-          }
-        })
-      );
-    })
+    caches.keys().then((keys) =>
+      Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)))
+    )
   );
   self.clients.claim();
 });
 
-// Event Fetch (Cache-First strategy untuk offline support)
 self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    caches.match(event.request).then((response) => {
-      return response || fetch(event.request);
-    })
-  );
+  const req = event.request;
+  if (req.method !== 'GET') return; // POST (CRUD) langsung ke server
+  const url = new URL(req.url);
+  if (url.origin !== location.origin) return;
+
+  if (/\.(css|js)$/.test(url.pathname)) {
+    event.respondWith(
+      fetch(req)
+        .then((res) => { caches.open(CACHE_NAME).then((c) => c.put(req, res.clone())); return res; })
+        .catch(() => caches.match(req))
+    );
+  }
 });
 
-// Event Notification Click
 self.addEventListener('notificationclick', (event) => {
   event.notification.close();
   event.waitUntil(
-    clients.matchAll({ type: 'window' }).then((clientList) => {
-      for (const client of clientList) {
-        if (client.url === '/' && 'focus' in client) {
-          return client.focus();
-        }
-      }
-      if (clients.openWindow) {
-        return clients.openWindow('./');
-      }
+    clients.matchAll({ type: 'window' }).then((list) => {
+      if (list.length && 'focus' in list[0]) return list[0].focus();
+      return clients.openWindow('./index.php');
     })
   );
 });

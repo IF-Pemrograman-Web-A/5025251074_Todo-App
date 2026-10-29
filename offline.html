@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#5C415D">
+    <title>Offline - To do List</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { min-height: 100vh; display: flex; flex-direction: column; background: #F6F7EB; color: #393E41; }
+        header { background: #5C415D; color: #F6F7EB; text-align: center; padding: 1.5rem 1rem; border-bottom: 10px solid #FFFC31; }
+        main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .card { background: #fff; max-width: 460px; width: 100%; padding: 32px; border-radius: 10px; text-align: center; box-shadow: 0 10px 15px rgba(0,0,0,.1); }
+        .icon { font-size: 3rem; margin-bottom: 12px; }
+        h2 { margin-bottom: 10px; }
+        p { margin-bottom: 20px; line-height: 1.5; }
+        button { padding: 10px 20px; background: #E94F37; color: #fff; border: none; border-radius: 4px; font-weight: 600; cursor: pointer; }
+        button:focus { outline: 3px solid #026199; outline-offset: 2px; }
+        footer { background: #5C415D; color: #F6F7EB; text-align: center; padding: 1rem; border-top: 10px solid #FFFC31; }
+    </style>
+</head>
+<body>
+    <header><h1>To do List</h1></header>
+    <main>
+        <div class="card" role="alert">
+            <div class="icon" aria-hidden="true">📡</div>
+            <h2>Anda sedang offline</h2>
+            <p>Halaman ini belum tersimpan di perangkat Anda. Sambungkan kembali internet, lalu coba muat ulang.
+               Menambah, mengubah, atau menghapus todo membutuhkan koneksi ke server.</p>
+            <button type="button" onclick="location.reload()">Coba Lagi</button>
+        </div>
+    </main>
+    <footer><p>Galih Arsandy Tawakal</p></footer>
+    <script>
+        // Otomatis muat ulang ketika koneksi kembali
+        window.addEventListener('online', () => location.reload());
+    </script>
+</body>
+</html>

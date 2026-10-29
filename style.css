@@ -381,7 +381,7 @@ body.dark-mode .badge.completed {
         margin-top: 10px;
     }
 }
-/* ===== E04: Sidebar, flash, link & form tambahan ===== */
+/* Sidebar, flash, link & form tambahan */
 .layout { display: flex; flex: 1; align-items: stretch; }
 .layout > .container { flex: 1; min-width: 0; margin: 0; max-width: none; }
 
@@ -434,4 +434,38 @@ a.btn-cancel { text-decoration: none; display: inline-block; text-align: center;
     .sidebar { width: 100%; flex-direction: row; flex-wrap: wrap; align-items: center; border-right: 0; border-bottom: 1px solid var(--border-color); }
     .menu { flex-direction: row; }
     .user-switch { margin-top: 0; margin-left: auto; }
+}
+
+/* PWA (tombol install & banner offline) */
+.btn-install {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 8px 14px;
+    background-color: var(--fiery-terracotta);
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.btn-install:hover { opacity: 0.9; }
+.btn-install[hidden], .offline-banner[hidden] { display: none; }
+
+.offline-banner {
+    background: var(--fiery-terracotta);
+    color: #ffffff;
+    text-align: center;
+    padding: 8px 14px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .btn-install {
+        position: static;
+        transform: none;
+        margin-bottom: 10px;
+    }
 }

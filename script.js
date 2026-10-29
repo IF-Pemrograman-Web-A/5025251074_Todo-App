@@ -1,4 +1,4 @@
-// script.js - sisi klien: tema, kamera, preview gambar, notifikasi, service worker
+// script.js - sisi klien: tema, kamera, preview gambar, notifikasi, service worker, install PWA, status offline
 const toggleThemeBtn = document.getElementById("toggle-theme-btn");
 
 // --- TEMA (localStorage) ---
@@ -80,7 +80,7 @@ btnRemove.addEventListener("click", () => {
     removeFlag.value = "1"; // server menghapus gambar lama saat update
 });
 
-// --- SERVICE WORKER & NOTIFIKASI ---
+// SERVICE WORKER & NOTIFIKASI
 function scheduleNotifications() {
     if (!("Notification" in window) || Notification.permission !== "granted") return;
     document.querySelectorAll("[data-notify]").forEach((el) => {
@@ -112,3 +112,49 @@ async function initPWA() {
     }
 }
 initPWA();
+
+// TOMBOL INSTALL PWA 
+const btnInstall = document.getElementById("install-button");
+let deferredPrompt = null;
+
+const isStandalone = () =>
+    window.matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+
+// Tampilkan tombol kecuali app sudah berjalan sebagai aplikasi terpasang
+if (btnInstall && !isStandalone()) btnInstall.hidden = false;
+
+window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+});
+
+if (btnInstall) {
+    btnInstall.addEventListener("click", async () => {
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            await deferredPrompt.userChoice;
+            deferredPrompt = null;
+        } else {
+            // Fallback: browser tidak menyediakan prompt (mis. Safari/iOS, atau sudah terpasang)
+            alert(
+                "Untuk memasang aplikasi:\n" +
+                "• Chrome/Edge: menu ⋮ → Instal aplikasi / Tambahkan ke layar utama\n" +
+                "• Safari iOS: tombol Bagikan → Tambah ke Layar Utama"
+            );
+        }
+    });
+}
+
+window.addEventListener("appinstalled", () => {
+    deferredPrompt = null;
+    if (btnInstall) btnInstall.hidden = true;
+});
+
+// STATUS ONLINE / OFFLINE 
+const offlineBanner = document.getElementById("offline-banner");
+function updateOnlineStatus() {
+    if (offlineBanner) offlineBanner.hidden = navigator.onLine;
+}
+window.addEventListener("online", updateOnlineStatus);
+window.addEventListener("offline", updateOnlineStatus);
+updateOnlineStatus();

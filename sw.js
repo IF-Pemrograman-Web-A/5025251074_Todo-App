@@ -1,4 +1,4 @@
-const VERSION = 'v3';
+const VERSION = 'v4';
 const SHELL_CACHE = `galih-todo-shell-${VERSION}`;
 const PAGE_CACHE  = `galih-todo-pages-${VERSION}`;
 const IMAGE_CACHE = `galih-todo-images-${VERSION}`;

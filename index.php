@@ -1,19 +1,10 @@
 <?php
-// index.php - entry point & router sederhana (Personal / Shared)
+// index.php - entry point halaman (shell HTML). Data todo diambil JavaScript lewat REST API (api/).
 require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/functions.php';
 
 $page  = ($_GET['page'] ?? 'personal') === 'shared' ? 'shared' : 'personal';
-$uid   = current_user_id();
-$users = get_users();
-$todos = get_todos($page, $uid);
-
-$editTodo = null;
-if (isset($_GET['edit'])) {
-    $t = get_todo((int)$_GET['edit']);
-    if ($t && (int)$t['user_id'] === $uid) $editTodo = $t;
-}
-$flash = pull_flash();
+$users = get_users(); // hanya untuk pilihan nama di form login
 
 include __DIR__ . '/includes/header.php';
 echo '<div class="layout">';

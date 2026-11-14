@@ -6,7 +6,8 @@ DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
   id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(100) NOT NULL
+  name VARCHAR(100) NOT NULL,
+  password_hash VARCHAR(255) NOT NULL
 ) ENGINE=InnoDB;
 
 CREATE TABLE todos (
@@ -22,8 +23,11 @@ CREATE TABLE todos (
   CONSTRAINT fk_todos_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
-INSERT INTO users (id, name) VALUES
-  (1, 'Galih'), (2, 'Rina'), (3, 'Dimas');
+-- Password demo semua user: password123 (bcrypt)
+INSERT INTO users (id, name, password_hash) VALUES
+  (1, 'Galih', '$2y$12$kjI9hOUdiKzJ/53TxX0yC.jnDrFK0tTNEFhMa89m/cDDCBuBl.zaW'),
+  (2, 'Rina',  '$2y$12$kjI9hOUdiKzJ/53TxX0yC.jnDrFK0tTNEFhMa89m/cDDCBuBl.zaW'),
+  (3, 'Dimas', '$2y$12$kjI9hOUdiKzJ/53TxX0yC.jnDrFK0tTNEFhMa89m/cDDCBuBl.zaW');
 
 INSERT INTO todos (user_id, title, description, status, visibility, notify_time) VALUES
   (1, 'Ngerjain tugas pweb', 'Menyelesaikan tugas modul PHP', 'pending', 'personal', NULL),

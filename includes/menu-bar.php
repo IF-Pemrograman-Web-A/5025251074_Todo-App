@@ -6,15 +6,23 @@
                <?= $page === 'shared' ? 'aria-current="page"' : '' ?>>Shared</a></li>
     </ul>
 
-    <form method="post" action="actions.php" class="user-switch">
-        <input type="hidden" name="csrf" value="<?= e(csrf_token()) ?>">
-        <input type="hidden" name="page" value="<?= e($page) ?>">
-        <input type="hidden" name="action" value="switch_user">
-        <label for="user-select">Masuk sebagai</label>
-        <select id="user-select" name="user_id" onchange="this.form.submit()">
+    <!-- Belum login: form login (POST /api/v1/auth/login) -->
+    <form id="login-form" class="user-switch" autocomplete="off">
+        <label for="login-name">Masuk sebagai</label>
+        <select id="login-name" name="name">
             <?php foreach ($users as $u): ?>
-                <option value="<?= (int)$u['id'] ?>" <?= (int)$u['id'] === $uid ? 'selected' : '' ?>><?= e($u['name']) ?></option>
+                <option value="<?= e($u['name']) ?>"><?= e($u['name']) ?></option>
             <?php endforeach; ?>
         </select>
+        <label for="login-password">Password</label>
+        <input type="password" id="login-password" name="password" required autocomplete="current-password">
+        <button type="submit" class="btn-save">Masuk</button>
     </form>
+
+    <!-- Sudah login -->
+    <div id="user-box" class="user-switch" hidden>
+        <span>Masuk sebagai</span>
+        <strong id="user-name"></strong>
+        <button type="button" id="btn-logout" class="btn-secondary">Keluar</button>
+    </div>
 </nav>

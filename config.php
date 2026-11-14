@@ -1,6 +1,4 @@
 <?php
-// config.php - konfigurasi database, session, dan helper dasar
-session_start();
 
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'todo_app');
@@ -10,6 +8,14 @@ define('DB_PASS', '');
 define('UPLOAD_DIR', __DIR__ . '/uploads/');
 define('UPLOAD_URL', 'uploads/');
 define('MAX_UPLOAD_BYTES', 2 * 1024 * 1024);
+
+// JWT (HS256). Ganti secret di server produksi, atau set environment variable TODO_JWT_SECRET.
+define('JWT_SECRET', getenv('TODO_JWT_SECRET') ?: 'k9Xv2mQp7Lr4TnZ8wBj5YdHc3FsA6UeG1oVi0xRt');
+define('JWT_TTL', 2 * 60 * 60); // masa berlaku token: 2 jam
+
+// CORS: daftar origin yang boleh memanggil API dari browser. '*' = semua origin.
+// Untuk produksi isi dengan domain frontend, mis. ['https://domain-a.com'].
+define('API_CORS_ORIGINS', ['*']);
 
 function db(): PDO {
     static $pdo = null;
@@ -27,20 +33,3 @@ function db(): PDO {
 }
 
 function e($v): string { return htmlspecialchars((string)$v, ENT_QUOTES, 'UTF-8'); }
-
-function redirect(string $url): void { header('Location: ' . $url); exit; }
-
-function current_user_id(): int { return (int)($_SESSION['user_id'] ?? 1); }
-
-function csrf_token(): string {
-    if (empty($_SESSION['csrf'])) $_SESSION['csrf'] = bin2hex(random_bytes(16));
-    return $_SESSION['csrf'];
-}
-
-function flash(string $type, string $msg): void { $_SESSION['flash'] = [$type, $msg]; }
-
-function pull_flash(): ?array {
-    $f = $_SESSION['flash'] ?? null;
-    unset($_SESSION['flash']);
-    return $f;
-}

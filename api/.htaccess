@@ -1,0 +1,8 @@
+# api/.htaccess (Apache) - semua URL /api/... diarahkan ke api/index.php
+RewriteEngine On
+
+# Teruskan header Authorization ke PHP (sering hilang di Apache + CGI/FastCGI)
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.php [QSA,L]
